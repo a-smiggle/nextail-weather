@@ -9,8 +9,8 @@ import {
   FiveDayList,
 } from './types';
 
-const openweatherAPI = process.env.OPENWEATHER_API;
-const openCageAPI = process.env.OPEN_CAGE_API;
+const openweatherAPI = process.env.NEXT_PUBLIC_OPENWEATHER_API;
+const openCageAPI = process.env.NEXT_PUBLIC_OPEN_CAGE_API;
 
 interface Location {
   lat: number;
