@@ -6,9 +6,9 @@ import Navbar from '../components/Navbar';
 import { useStore } from '../utils/WeatherProvider';
 
 const Home: NextPage = () => {
-  const { updateLocation, locationData } = useStore();
+  const { UpdateLocation, locationData } = useStore();
 
-  updateLocation();
+  UpdateLocation();
 
   return (
     <div className="flex h-fit w-full grow flex-col overflow-hidden bg-white dark:bg-slate-700 dark:text-slate-300">

@@ -5,6 +5,7 @@ import { persist } from 'zustand/middleware';
 import {
   AirPollutionResponse,
   CurrentWeatherResponse,
+  FiveDay,
   FiveDayList,
 } from './types';
 
@@ -34,16 +35,16 @@ interface WeatherState {
   currentWeatherKelvinUpdated: number;
   currentWeatherImperial: CurrentWeatherResponse | undefined;
   currentWeatherImperialUpdated: number;
-  fiveDayWeather: any | undefined;
+  fiveDayWeather: FiveDay | undefined;
   fiveDayWeatherUpdate: number;
-  fiveDayWeatherKelvin: any | undefined;
+  fiveDayWeatherKelvin: FiveDay | undefined;
   fiveDayWeatherKelvinUpdate: number;
-  fiveDayWeatherImperial: any | undefined;
+  fiveDayWeatherImperial: FiveDay | undefined;
   fiveDayWeatherImperialUpdate: number;
   airPollution: AirPollutionResponse | undefined;
   airPollutionUpdate: number;
   updateUnits: (unit: 'metric' | 'imperial' | 'standard') => void;
-  updateLocation: () => void;
+  UpdateLocation: () => void;
   clearLocation: () => void;
   updateLocationData: () => void;
   clearLocationData: () => void;
@@ -93,7 +94,7 @@ export const useStore = create<WeatherState>()(
           get().updateFiveDayWeatherKelvin();
         }
       },
-      updateLocation: () => {
+      UpdateLocation: () => {
         function handleLocation(la: number, lo: number) {
           set(() => ({ location: { lat: la, long: lo } }));
           get().updateLocationData();
@@ -239,7 +240,7 @@ export const useStore = create<WeatherState>()(
 
           if (RESP.ok) {
             const resp = await RESP.json();
-            const temp = {};
+            const temp: FiveDay = {};
             resp.list.forEach((forecast: FiveDayList) => {
               const date = new Date(forecast.dt_txt).toDateString();
               if (!temp[date]) temp[date] = [];
@@ -270,7 +271,7 @@ export const useStore = create<WeatherState>()(
 
           if (RESP.ok) {
             const resp = await RESP.json();
-            const temp: Array<Array<FiveDayList>> = [[], [], [], [], []];
+            const temp: FiveDay = {};
             resp.list.forEach((forecast: FiveDayList) => {
               const date = new Date(forecast.dt_txt).toDateString();
               if (!temp[date]) temp[date] = [];
@@ -301,7 +302,7 @@ export const useStore = create<WeatherState>()(
 
           if (RESP.ok) {
             const resp = await RESP.json();
-            const temp: Array<Array<FiveDayList>> = [[], [], [], [], []];
+            const temp: FiveDay = {};
             resp.list.forEach((forecast: FiveDayList) => {
               const date = new Date(forecast.dt_txt).toDateString();
               if (!temp[date]) temp[date] = [];

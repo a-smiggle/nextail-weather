@@ -133,3 +133,7 @@ export interface AirPollutionResponse {
   coord: Coordinates;
   list: AirPollutionList[];
 }
+
+export interface FiveDay {
+  [key: string]: FiveDayList[];
+}
