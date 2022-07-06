@@ -242,7 +242,7 @@ export const useStore = create<WeatherState>()(
             const resp = await RESP.json();
             const temp: FiveDay = {};
             resp.list.forEach((forecast: FiveDayList) => {
-              const date = new Date(forecast.dt_txt).toDateString();
+              const date = new Date(forecast.dt * 1000).toDateString();
               if (!temp[date]) temp[date] = [];
 
               temp[date].push(forecast);
@@ -273,7 +273,7 @@ export const useStore = create<WeatherState>()(
             const resp = await RESP.json();
             const temp: FiveDay = {};
             resp.list.forEach((forecast: FiveDayList) => {
-              const date = new Date(forecast.dt_txt).toDateString();
+              const date = new Date(forecast.dt * 1000).toDateString();
               if (!temp[date]) temp[date] = [];
 
               temp[date].push(forecast);
@@ -304,7 +304,7 @@ export const useStore = create<WeatherState>()(
             const resp = await RESP.json();
             const temp: FiveDay = {};
             resp.list.forEach((forecast: FiveDayList) => {
-              const date = new Date(forecast.dt_txt).toDateString();
+              const date = new Date(forecast.dt * 1000).toDateString();
               if (!temp[date]) temp[date] = [];
 
               temp[date].push(forecast);
